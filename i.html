@@ -17,19 +17,19 @@
             <h1>We're <span>Launching Soon...</span></h1>
             <div class="launching-time">
                 <div>
-                    <p>00</p>
+                    <p id="days">00</p>
                     <span>Days</span>
                 </div>
                 <div>
-                    <p>00</p>
+                    <p id="hours">00</p>
                     <span>Hours</span>
                 </div>
                 <div>
-                    <p>00</p>
+                    <p id="minutes">00</p>
                     <span>Minutes</span>
                 </div>
                 <div>
-                    <p>00</p>
+                    <p id="seconds">00</p>
                     <span>Seconds</span>
                 </div>
                 <img src="images/rocket.png" alt="" class="rocket">
@@ -37,6 +37,48 @@
             <button type="button">Learn more <img src="images/triangle.png" alt=""></button>
         </div>
     </div>
+
+    <script>
+
+        // create date and get time countdown will end
+        var countDownDate = new Date("Sept 31, 2023 00:00:00").getTime();
+        var x = setInterval(function(){
+            var now = new Date().getTime();
+            // difference between todays date and countdown date
+            var distance = countDownDate - now;
+
+            // calculate days, hours, minutes, seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+
+            if (distance < 0) {
+                // clear the set interval
+                clearInterval(x);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+            }
+
+
+
+
+        },1000);
+
+
+
+        
+
+    </script>
 
     
 </body>
